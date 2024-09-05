@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            background: url(frieren.jpg) no-repeat;
+            background: url(images/frieren.jpg) no-repeat;
             background-size: cover;
             background-position: center;
         }
