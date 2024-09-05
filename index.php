@@ -60,6 +60,7 @@
             width: 80%;
             height: 40px;
             font-size: medium;
+            font-weight: bold;
             margin-top: 20px;
             margin-bottom: 20px;
             padding: 4px;
@@ -101,7 +102,7 @@
                     header('location:dashboard.php'); 
                     // Jika sesuai, session akan diatur dan pengguna akan diarahkan ke dashboard.php
                 } else {
-                    echo "Akun anda tidak terdaftar" . PHP_EOL;
+                    echo "<script>alert('Akun anda tidak terdaftar')</script>" . PHP_EOL ;
                 }
             }
         ?>
