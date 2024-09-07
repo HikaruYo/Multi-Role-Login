@@ -61,7 +61,7 @@
 
             $role = $_SESSION['role'];
             $username = htmlspecialchars($_SESSION['username']);
-            echo "<h1>{$pesan[$role]}, {$username}</h1>" 
+            echo "<h1>{$pesan[$role]}, {$username}</h1>";
 
         ?>
 

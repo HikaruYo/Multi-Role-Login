@@ -44,7 +44,7 @@
             width: 90%;
         }
         .form h1 {
-            margin: 20px 0 25px 0;
+            margin: 10px 0 25px 0;
         }
         input {
             display: flex;
@@ -68,16 +68,37 @@
             border-radius: 14px;
             cursor: pointer;
         }
+        .row {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .alert-box {
+            padding: 15px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            width: 380px;
+            max-width: auto;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div class="index">
+    
+
     <form method="POST">
         <?php
             session_start();
 
             //Koneksi database
             include "connection.php";
+
+            // Cek apakah ada pesan error dalam session, jika ada, ambil dan hapus setelah ditampilkan
+            $error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
+            unset($_SESSION['error']);  // Hapus error dari session setelah ditampilkan
             
             // Login logic
             if(isset($_POST['login'])) {
@@ -101,9 +122,26 @@
                     $_SESSION['username']=$data['username'];
                     header('location:dashboard.php'); 
                     // Jika sesuai, session akan diatur dan pengguna akan diarahkan ke dashboard.php
+                    exit(); // Hentikan eksekusi setelah pengalihan halaman
                 } else {
-                    echo "<script>alert('Akun anda tidak terdaftar')</script>" . PHP_EOL ;
+                    // Simpan error di session dan refresh halaman
+                    $_SESSION['error'] = "Akun Anda Tidak Terdaftar!";
+                    header('Location: ' . $_SERVER['PHP_SELF']); // Refresh halaman untuk menampilkan error
+                    exit();
                 }
+            }
+        ?>
+
+        <?php
+            // Tampilkan error jika ada
+            if (!empty($error)) {
+                echo <<<HTML
+                    <div class="row">
+                        <div class="alert-box">
+                            $error
+                        </div>
+                    </div>
+                HTML;
             }
         ?>
 
