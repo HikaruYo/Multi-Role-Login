@@ -69,7 +69,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: rgba(255, 255, 255, .8);
+            background-color: rgba(255, 255, 200, .8);
         }
         .row {
             display: flex;
