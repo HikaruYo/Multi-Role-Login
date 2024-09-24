@@ -68,6 +68,9 @@
             border-radius: 14px;
             cursor: pointer;
         }
+        button:hover {
+            background-color: rgba(255, 255, 255, .8);
+        }
         .row {
             display: flex;
             justify-content: center;
