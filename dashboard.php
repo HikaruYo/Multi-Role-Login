@@ -18,19 +18,24 @@
         body {
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
-        .dashboard {
+        .navbar {
+            display: flex;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 10px;
             background-color: lightgrey;
-            display: flex;
-            align-items: start;
-            flex-direction: column;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-around;
+            
         }
-        .dashboard h1 {
+        .navbar h1 {
             margin: 10px;
+        }
+        .navbar .welcome {
+            align-items: center;
         }
         p {
             font-size: large;
@@ -48,25 +53,32 @@
     </style>
 </head>
 <body>  
-    <div class="dashboard">
-        <p>Anda login sebagai: <?php echo htmlspecialchars($_SESSION['role']); ?></p>
-        
+    <div class="dashboard">        
         <?php           
             // Pesan selamat datang sesuai role
-            $pesan = [
-                'superadmin'=> 'Selamat Datang Tuan',
-                'admin'=> 'Selamat Datang',
-                'regular'=> 'Hai'
-            ];
+            // $pesan = [
+            //     'superadmin'=> 'Selamat Datang Tuan',
+            //     'admin'=> 'Selamat Datang',
+            //     'regular'=> 'Hai'
+            // ];
 
             $role = $_SESSION['role'];
-            $username = htmlspecialchars($_SESSION['username']);
-            echo "<h1>{$pesan[$role]}, {$username}</h1>";
+            
+            switch ($role) {
+                case $role == 'regular':
+                    include './regular/index.php';
+                    break;
+                case $role == 'admin':
+                    include './admin/index.php';
+                    break;
+                case $role == 'superadmin':
+                    include './superadmin/index.php';
+            }
+
+            // $username = htmlspecialchars($_SESSION['username']);
+            // echo "<h1>{$pesan[$role]}, {$username}</h1>";
 
         ?>
-
-        <!-- Logout Function -->
-        <a href="logout.php">LogOut</a>
     </div>
 </body>
 </html>
